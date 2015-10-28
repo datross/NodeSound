@@ -8,13 +8,13 @@
 CXXFLAGS= -I"include/"
 
 all : main.o core.o
-	g++ main.o core.o $(CXXFLAGS) -o build/release/NodeSound
+	g++ $(CXXFLAGS) -o build/release/NodeSound main.o core.o
 	
 main.o : core.o
-	g++ src/main.cpp $(CXXFLAGS) -o main.o
+	g++ $(CXXFLAGS) -o main.o src/main.cpp
 	
 core.o : 
-	g++ src/core/core.cpp $(CXXFLAGS) -o core.o
+	g++ $(CXXFLAGS) -o core.o src/core/core.cpp
 
 # suppression des fichiers temporaires
 clean:
