@@ -5,22 +5,17 @@
 .SUFFIXES:
 
 # variables
-CXXFLAGS= -Iinclude
+CXXFLAGS= -Iinclude -Wall
 
 all : main.o core.o
-	g++ main.o core.o $(CXXFLAGS) -o build/release/NodeSound
+	g++ build/main.o build/core.o $(CXXFLAGS) -o bin/release/NodeSound
 	
 main.o : core.o
-	g++ -c src/main.cpp $(CXXFLAGS) -o main.o
+	g++ -c src/main.cpp $(CXXFLAGS) -o build/main.o
 	
 core.o : 
-	g++ -c src/core/core.cpp $(CXXFLAGS) -o core.o
+	g++ -c src/core/core.cpp $(CXXFLAGS) -o build/core.o
 
 # suppression des fichiers temporaires
 clean:
-	rm -rf *.o
-
-# suppression de tous les fichiers, sauf les sources,
-# en vue d'une reconstruction complète
-mrproper: clean
-	rm -rf NodeSound
+	rm -rf build/*.o

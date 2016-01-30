@@ -1,6 +1,6 @@
 /* node.cpp */
 
-#include "core.node.hpp"
+#include "core/node.hpp"
 
 Node::Node() {
 }
