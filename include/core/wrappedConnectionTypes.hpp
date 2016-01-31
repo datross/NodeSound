@@ -13,7 +13,7 @@ namespace nsd {
 class AudioRegion 
 {
 public:
-    AudioRegion(uint32_t bufferLength, uint32_t sampleRate);
+    AudioRegion(unsigned int bufferLength, unsigned int sampleRate);
     
     /* these accessors do not check validity of 'buffer' */
     audioBuffer getBuffer(unsigned int buffer);
@@ -22,16 +22,16 @@ public:
     std::vector<audioBuffer> * getBuffers();
     
     float getDuration();
-    uint32_t getBufferLength();
+    unsigned int getBufferLength();
     
 private:
     /* audioBuffers, of length 'bufferLength', the audio migth not fill the entire last buffer which is completed with 0 */
     std::vector<audioBuffer> buffers;
     
-    uint32_t bufferLength;
+    unsigned int bufferLength;
     
     /* how many 'audioSample' are in a second */
-    uint32_t sampleRate;
+    unsigned int sampleRate;
 };
 
 /* stores a midi event with his time */

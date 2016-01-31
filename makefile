@@ -5,16 +5,22 @@
 .SUFFIXES:
 
 # variables
-CXXFLAGS= -Iinclude -Wall
+CXXFLAGS= -Iinclude  -I/home/datross/Programmation/Librairies/portaudio/include/ -lrt -lpthread -lasound -Wall
 
 all : main.o core.o
-	g++ build/main.o build/core.o $(CXXFLAGS) -o bin/release/NodeSound
+	g++ libportaudio.a build/main.o build/core.o $(CXXFLAGS) -o bin/release/NodeSound
 	
 main.o : core.o
 	g++ -c src/main.cpp $(CXXFLAGS) -o build/main.o
 	
-core.o : 
+core.o : unwrappedConnectionTypes.o wrappedConnectionTypes.o
 	g++ -c src/core/core.cpp $(CXXFLAGS) -o build/core.o
+	
+wrappedConnectionTypes.o : unwrappedConnectionTypes.o
+	g++ -c src/core/wrappedConnectionTypes.cpp $(CXXFLAGS) -o build/wrappedConnectionTypes.o
+	
+unwrappedConnectionTypes.o :
+	g++ -c src/core/unwrappedConnectionTypes.cpp $(CXXFLAGS) -o build/unwrappedConnectionTypes.o
 
 # suppression des fichiers temporaires
 clean:

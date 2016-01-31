@@ -2,11 +2,12 @@
 
 #include "core/wrappedConnectionTypes.hpp"
 
-using namespace nsd, std;
+using namespace std;
+using namespace nsd;
 
 /* ----- AudioRegion ----- */
 
-AudioRegion::AudioRegion(uint32_t bufferLength, uint32_t sampleRate) 
+AudioRegion::AudioRegion(unsigned int bufferLength, unsigned int sampleRate) 
     : bufferLength(bufferLength), sampleRate(sampleRate)
 {
 }
@@ -38,22 +39,27 @@ MidiRegion::MidiRegion() {
 
 int MidiRegion::addEvent(midiEventSync& eventSync) {
     /* check if there is an event at the same time */
-    
+    return 0;
 }
+
+int removeEvent(const midiEventSync&) {
+    return 0;
+}
+    
 
 midiEventSync * MidiRegion::getEvent(float time) {
     /* binary search in the vector */
-    vector<midiEventSync*>::iterator begin = events.begin(), end = events.end(), mid;
+    unsigned int begin = 0, end = events.size(), mid;
     
     while(begin <= end) {
         mid = (end + begin) / 2;
-        if((*mid)->time == time) {
-            return *mid;
-        if((*mid)->time > time) {
+        if(events[mid]->time == time)
+            return events[mid];
+        if(events[mid]->time > time) {
             end = mid - 1;
         } else {
             begin = mid + 1;
         }
-    
+    }
     return NULL;
 }
