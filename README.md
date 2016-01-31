@@ -1,2 +1,2 @@
 # NodeSound
-Audio creation sofware, based on nodes.
+Audio creation software, based on nodes.
